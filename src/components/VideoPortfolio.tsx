@@ -1,4 +1,7 @@
 import timelineVideo from '../assets/timeline1.mov'
+import verticalVideo1 from '../assets/Siedzenie.mp4'
+import verticalVideo2 from '../assets/sonda_fixed_sub.mp4'
+import verticalVideo3 from '../assets/wybory_wakacyjne.mov'
 
 const VideoPortfolio = () => {
   return (
@@ -28,27 +31,6 @@ const VideoPortfolio = () => {
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         <article className="overflow-hidden rounded-[1.75rem] border border-white/10 bg-[#0a0a0a] transition duration-300 hover:-translate-y-1 hover:border-glow/30">
-          <div className="relative overflow-hidden bg-black" style={{ aspectRatio: '16 / 9' }}>
-            <iframe
-              title="Reels marketingowy"
-              src="https://www.youtube.com/embed/ScMzIvxBSi4"
-              loading="lazy"
-              className="h-full w-full"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
-          </div>
-          <div className="p-5">
-            <p className="text-xs uppercase tracking-[0.3em] text-slate-500">Social Media</p>
-            <h3 className="mt-3 text-xl font-semibold text-white">Reels z kampanii produktowej</h3>
-            <p className="mt-3 text-sm leading-6 text-slate-400">
-              Szybki montaż w rytmie muzyki, z wyraźnym brandingiem i klarownym przekazem.
-            </p>
-          </div>
-        </article>
-
-        <article className="overflow-hidden rounded-[1.75rem] border border-white/10 bg-[#0a0a0a] transition duration-300 hover:-translate-y-1 hover:border-glow/30">
           <div className="relative overflow-hidden bg-black" style={{ aspectRatio: '9 / 16' }}>
             <video
               className="h-full w-full object-cover"
@@ -70,39 +52,60 @@ const VideoPortfolio = () => {
 
         <article className="overflow-hidden rounded-[1.75rem] border border-white/10 bg-[#0a0a0a] transition duration-300 hover:-translate-y-1 hover:border-glow/30">
           <div className="relative overflow-hidden bg-black" style={{ aspectRatio: '9 / 16' }}>
-            <div className="flex h-full w-full items-center justify-center bg-[#111111] text-slate-400">Placeholder vertical</div>
+            <video
+              className="h-full w-full object-cover"
+              src={verticalVideo1}
+              controls
+              muted
+              loop
+              playsInline
+            />
           </div>
           <div className="p-5">
             <p className="text-xs uppercase tracking-[0.3em] text-slate-500">Short Form</p>
-            <h3 className="mt-3 text-xl font-semibold text-white">Reels AI Visuals</h3>
+            <h3 className="mt-3 text-xl font-semibold text-white">Wideo vertical 1</h3>
             <p className="mt-3 text-sm leading-6 text-slate-400">
-              Pionowy format z generatywnymi assetami i efektem quick-cut idealnym do TikToka.
-            </p>
-          </div>
-        </article>
-
-        <article className="overflow-hidden rounded-[1.75rem] border border-white/10 bg-[#0a0a0a] transition duration-300 hover:-translate-y-1 hover:border-glow/30">
-          <div className="relative overflow-hidden bg-black" style={{ aspectRatio: '16 / 9' }}>
-            <div className="flex h-full w-full items-center justify-center bg-[#111111] text-slate-400">Placeholder promo</div>
-          </div>
-          <div className="p-5">
-            <p className="text-xs uppercase tracking-[0.3em] text-slate-500">Promo</p>
-            <h3 className="mt-3 text-xl font-semibold text-white">Teaser eventowy</h3>
-            <p className="mt-3 text-sm leading-6 text-slate-400">
-              Skrócona forma wideo przeznaczona dla szybkiej komunikacji i prezentacji eventu.
+              Pionowy materiał przygotowany pod Instagram Reels i TikToka.
             </p>
           </div>
         </article>
 
         <article className="overflow-hidden rounded-[1.75rem] border border-white/10 bg-[#0a0a0a] transition duration-300 hover:-translate-y-1 hover:border-glow/30">
           <div className="relative overflow-hidden bg-black" style={{ aspectRatio: '9 / 16' }}>
-            <div className="flex h-full w-full items-center justify-center bg-[#111111] text-slate-400">Placeholder vertical</div>
+            <video
+              className="h-full w-full object-cover"
+              src={verticalVideo2}
+              controls
+              muted
+              loop
+              playsInline
+            />
+          </div>
+          <div className="p-5">
+            <p className="text-xs uppercase tracking-[0.3em] text-slate-500">Promo</p>
+            <h3 className="mt-3 text-xl font-semibold text-white">Wideo vertical 2</h3>
+            <p className="mt-3 text-sm leading-6 text-slate-400">
+              Kompaktowa, dynamiczna forma z wyraźnym przekazem i mocnym montażem.
+            </p>
+          </div>
+        </article>
+
+        <article className="overflow-hidden rounded-[1.75rem] border border-white/10 bg-[#0a0a0a] transition duration-300 hover:-translate-y-1 hover:border-glow/30">
+          <div className="relative overflow-hidden bg-black" style={{ aspectRatio: '9 / 16' }}>
+            <video
+              className="h-full w-full object-cover"
+              src={verticalVideo3}
+              controls
+              muted
+              loop
+              playsInline
+            />
           </div>
           <div className="p-5">
             <p className="text-xs uppercase tracking-[0.3em] text-slate-500">AI Visuals</p>
-            <h3 className="mt-3 text-xl font-semibold text-white">Kampania social</h3>
+            <h3 className="mt-3 text-xl font-semibold text-white">Wideo vertical 3</h3>
             <p className="mt-3 text-sm leading-6 text-slate-400">
-              Krótki materiał wideo łączący motion design z generatywnymi efektami wizualnymi.
+              Materiał w formacie 9:16 idealny do social media i szybkich kampanii.
             </p>
           </div>
         </article>

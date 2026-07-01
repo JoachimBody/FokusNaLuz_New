@@ -7,9 +7,14 @@ import photo5 from '../assets/session2/DSC02820.jpg'
 import photo6 from '../assets/session2/DSC02820-2.jpg'
 import photo7 from '../assets/session2/DSC02826.jpg'
 import photo8 from '../assets/session2/DSC02834.jpg'
+import photo9 from '../assets/session2/DSC02736.jpg'
+import photo10 from '../assets/session2/DSC02762.jpg'
+import photo11 from '../assets/session2/DSC02767.jpg'
+import photo12 from '../assets/session2/DSC02770.jpg'
+import photo13 from '../assets/session2/DSC02791.jpg'
 
 const PortfolioPlaceholder = () => {
-  const galleryImages = [photo1, photo2, photo3, photo4, photo5, photo6, photo7, photo8]
+  const galleryImages = [photo1, photo2, photo3, photo4, photo5, photo6, photo7, photo8, photo9, photo10, photo11, photo12, photo13]
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
 
   const openLightbox = (index: number) => setLightboxIndex(index)
