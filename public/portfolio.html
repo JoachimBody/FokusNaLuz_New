@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio | FokusNaLuz</title>
+    <meta name="description" content="Portfolio fotograficzne i montaż wideo FokusNaLuz. Zobacz sesje, realizacje i styl wizualny." />
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" />
+    <style>
+      :root {
+        color-scheme: dark;
+        font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        color: #e9e9e9;
+        background: #070707;
+      }
+      * { box-sizing: border-box; }
+      html, body { margin: 0; min-height: 100%; background: radial-gradient(circle at top, rgba(102,255,234,0.08), transparent 25%), #070707; }
+      body { line-height: 1.6; }
+      a { color: inherit; text-decoration: none; }
+
+      .page { min-height: 100vh; padding: 0 1.25rem 3rem; }
+      .wrapper { max-width: 1680px; margin: 0 auto; }
+
+      .topbar, .site-topbar { position: sticky; top: 0; z-index: 30; background: rgba(7,7,7,0.95); backdrop-filter: blur(18px); border-bottom: 1px solid rgba(255,255,255,0.08); }
+      .topbar-inner, .site-menu {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem 1.25rem;
+        color: #94a3b8;
+        font-size: 0.88rem;
+        max-width: 1680px;
+        margin: 0 auto;
+      }
+      .topbar-inner span { letter-spacing: 0.25em; text-transform: uppercase; }
+      .topbar-inner .links { display: flex; flex-wrap: wrap; gap: 1rem; }
+      .topbar-inner a:hover { color: #66ffea; }
+
+      .hero { min-height: 90vh; display: flex; align-items: center; padding: 4rem 0 3rem; }
+      .hero-content { max-width: 720px; }
+      .eyebrow { display: inline-flex; margin-bottom: 1rem; padding: 0.55rem 1rem; border-radius: 999px; border: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.04); color: #a5b4fc; letter-spacing: 0.2em; font-size: 0.75rem; text-transform: uppercase; }
+      h1 { margin: 0; font-size: clamp(3rem, 5vw, 4.5rem); line-height: 0.95; letter-spacing: -0.05em; }
+      .subtext { margin: 1.5rem 0 0; color: #cbd5e1; font-size: 1rem; max-width: 44rem; }
+
+      .section-title { margin: 0 0 1.5rem; font-size: 2rem; line-height: 1.1; }
+      .filter-bar { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1.75rem; }
+      .filter-button { padding: 0.9rem 1.4rem; border-radius: 999px; border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.03); color: #cbd5e1; cursor: pointer; transition: background .2s, color .2s, transform .2s; }
+      .filter-button:hover, .filter-button.active { background: rgba(102,255,234,0.12); color: #e9f8f7; transform: translateY(-1px); }
+
+      .portfolio-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; }
+      .card { min-height: 380px; border: 1px solid rgba(255,255,255,0.08); border-radius: 1.75rem; background: rgba(15,23,42,0.76); box-shadow: 0 24px 80px rgba(0,0,0,0.45); overflow: hidden; display: flex; flex-direction: column; }
+      .card-visual { width: 100%; background: linear-gradient(180deg, rgba(255,127,179,0.16), rgba(7,7,7,0.9)); display: grid; place-items: center; color: rgba(249,250,251,0.8); font-weight:700; letter-spacing:0.08em; text-transform:uppercase; font-size:1.05rem; overflow:hidden; }
+      .card-visual img { width:100%; height:auto; display:block; object-fit:cover; }
+      .card[data-category="video"] .card-visual { aspect-ratio: 9 / 16; }
+      .card-body { padding: 1.4rem 1.5rem; }
+      .card-body h3 { margin:0; font-size:1.15rem; }
+      .card-body p { margin:0.9rem 0 0; color:#94a3b8; line-height:1.75; font-size:0.96rem; }
+
+      .cta-box { margin-top:3rem; padding:2rem; border-radius:2rem; background: rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.05); }
+      .cta-inner { display:flex; flex-wrap:wrap; justify-content:space-between; gap:1rem; align-items:center; }
+      .cta-inner p { margin:0; max-width:760px; }
+      .button { display:inline-flex; align-items:center; justify-content:center; padding:1rem 1.75rem; border-radius:999px; background: linear-gradient(135deg,#8b5cf6,#38bdf8); color:#fff; font-weight:700; transition:transform .2s, box-shadow .2s; box-shadow:0 15px 30px rgba(56,189,248,0.18); }
+      .button:hover { transform: translateY(-1px); box-shadow:0 22px 40px rgba(56,189,248,0.24); }
+      footer { margin-top:3rem; text-align:center; color:#94a3b8; font-size:0.95rem; }
+
+      @media (max-width:960px) { .portfolio-grid { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); } }
+      @media (max-width:640px) { .hero { padding-top:3rem; } .portfolio-grid { grid-template-columns: 1fr; } }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <div class="wrapper">
+        <nav class="site-topbar">
+          <div class="topbar-inner site-menu">
+            <span>Portfolio</span>
+            <div class="links">
+              <a href="/">Strona główna</a>
+              <a href="/portfolio.html">Portfolio</a>
+              <a href="index.html#contact">Kontakt</a>
+            </div>
+          </div>
+        </nav>
+
+        <section class="hero">
+          <div class="hero-content">
+            <span class="eyebrow">Portfolio zawodowe</span>
+            <h1>Wybrane realizacje fotograficzne i montaż wideo.</h1>
+            <p class="subtext">Klimatyczne sesje, mocny storytelling i wypolerowany montaż. Przegląd moich ulubionych projektów, które budują spójny, wizualny styl FokusNaLuz.</p>
+          </div>
+        </section>
+
+        <section style="padding-bottom: 3rem;">
+          <h2 class="section-title">Projekty</h2>
+          <div class="filter-bar">
+            <button class="filter-button active" data-filter="all">Wszystkie</button>
+            <button class="filter-button" data-filter="photo">Sesje fotograficzne</button>
+            <button class="filter-button" data-filter="video">Montaż rolek wideo</button>
+          </div>
+          <div class="portfolio-grid">
+            <article class="card" data-category="photo">
+              <div class="card-visual">
+                <img src="/krwawa38.webp" alt="Sesje kobiece" />
+              </div>
+              <div class="card-body">
+                <h3>Sesje kobiece</h3>
+                <p>Delikatność, światło i emocje. Portfolio wybranych sesji pełnych zmysłowego nastroju.</p>
+              </div>
+            </article>
+
+            <article class="card" data-category="photo">
+              <div class="card-visual">
+                <img src="/Frieren-11.webp" alt="Sesje cosplay" />
+              </div>
+              <div class="card-body">
+                <h3>Sesje cosplay</h3>
+                <p>Barwne, charakteryzowane realizacje, w których postać spotyka się z klimatycznym obrazem.</p>
+              </div>
+            </article>
+
+            <article class="card" data-category="photo">
+              <div class="card-visual">Portret</div>
+              <div class="card-body">
+                <h3>Portret kobiecy</h3>
+                <p>Spójna narracja i naturalna stylizacja pozwalają wydobyć charakter każdej modelki.</p>
+              </div>
+            </article>
+
+            <article class="card" data-category="photo">
+              <div class="card-visual">Event</div>
+              <div class="card-body">
+                <h3>Relacje z wydarzeń</h3>
+                <p>Reportażowe kadry i storytelling w ruchu — od koncertów po imprezy artystyczne.</p>
+              </div>
+            </article>
+
+            <article class="card" data-category="video">
+              <div class="card-visual">
+                <video style="width:100%;height:100%;object-fit:cover;display:block;" src="/videos/reklama_pyrkon.mov" preload="metadata" controls volume="1" loop playsinline onclick="this.muted=false; this.volume=1;" onplay="this.muted=false; this.volume=1;"></video>
+              </div>
+              <div class="card-body">
+                <h3>Montaż wideo — timeline</h3>
+                <p>Dynamiczne cięcia i eksperymentalne podejście do narracji wideo.</p>
+              </div>
+            </article>
+
+            <article class="card" data-category="video">
+              <div class="card-visual">
+                <video style="width:100%;height:100%;object-fit:cover;display:block;" src="/videos/Siedzenie.mp4" preload="metadata" controls volume="1" loop playsinline onclick="this.muted=false; this.volume=1;" onplay="this.muted=false; this.volume=1;"></video>
+              </div>
+              <div class="card-body">
+                <h3>Wideo — Siedzenie</h3>
+                <p>Pionowy materiał przygotowany pod social media z mocnym rytmem montażu.</p>
+              </div>
+            </article>
+
+            <article class="card" data-category="video">
+              <div class="card-visual">
+                <video style="width:100%;height:100%;object-fit:cover;display:block;" src="/videos/sonda_fixed_sub.mp4" preload="metadata" controls volume="1" loop playsinline onclick="this.muted=false; this.volume=1;" onplay="this.muted=false; this.volume=1;"></video>
+              </div>
+              <div class="card-body">
+                <h3>Wideo — Sonda</h3>
+                <p>Krótkie formy promocyjne o wyraźnym tempie i kolorze.</p>
+              </div>
+            </article>
+
+            <article class="card" data-category="video">
+              <div class="card-visual">
+                <video style="width:100%;height:100%;object-fit:cover;display:block;" src="/videos/wybory_wakacyjne.mov" preload="metadata" controls volume="1" loop playsinline onclick="this.muted=false; this.volume=1;" onplay="this.muted=false; this.volume=1;"></video>
+              </div>
+              <div class="card-body">
+                <h3>Wideo — Wybory wakacyjne</h3>
+                <p>Projekt wideo o narracyjnym zarysie, przygotowany pod krótkie formy.</p>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        </section>
+
+        <footer>
+          <p>FokusNaLuz — fotografia artystyczna, portret i montaż wideo.</p>
+        </footer>
+    <script>
+      (function(){
+        document.querySelectorAll('video').forEach(function(v){
+          v.addEventListener('click', function(){
+            v.muted = false;
+            v.volume = 1;
+          });
+          v.addEventListener('play', function(){
+            v.muted = false;
+            v.volume = 1;
+          });
+        });
+      })();
+    </script>
+      </div>
+    </main>
+
+    <script>
+      const buttons = document.querySelectorAll('.filter-button')
+      const cards = document.querySelectorAll('.portfolio-grid .card')
+
+      buttons.forEach((button) => {
+        button.addEventListener('click', () => {
+          buttons.forEach((btn) => btn.classList.remove('active'))
+          button.classList.add('active')
+
+          const filter = button.dataset.filter
+          cards.forEach((card) => {
+            const category = card.dataset.category
+            if (filter === 'all' || category === filter) {
+              card.style.display = 'flex'
+            } else {
+              card.style.display = 'none'
+            }
+          })
+        })
+      })
+    </script>
+  </body>
+</html>

@@ -75,3 +75,32 @@ textarea,
 button {
   outline: none;
 }
+
+/* Shared menu styles for consistent header across pages */
+.site-menu {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  max-width: 1680px;
+  margin: 0 auto;
+  padding: 1rem 1.25rem;
+  color: #94a3b8;
+  font-size: 0.88rem;
+}
+
+/* Outer topbar to match public/portfolio.html */
+.site-topbar {
+  background: rgba(7,7,7,0.95);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  backdrop-filter: blur(18px);
+}
+
+/* Page wrapper matching public/portfolio.html */
+.wrapper {
+  max-width: 1680px;
+  margin: 0 auto;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}

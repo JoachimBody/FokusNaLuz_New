@@ -1,9 +1,15 @@
-import timelineVideo from '../assets/timeline1.mov'
-import verticalVideo1 from '../assets/Siedzenie.mp4'
-import verticalVideo2 from '../assets/sonda_fixed_sub.mp4'
-import verticalVideo3 from '../assets/wybory_wakacyjne.mov'
+import { type SyntheticEvent } from 'react'
+import timelineVideo from '/videos/reklama_pyrkon.mov'
+import verticalVideo1 from '/videos/Siedzenie.mp4'
+import verticalVideo2 from '/videos/sonda_fixed_sub.mp4'
+import verticalVideo3 from '/videos/wybory_wakacyjne.mov'
 
 const VideoPortfolio = () => {
+  const enableSound = (event: SyntheticEvent<HTMLVideoElement>) => {
+    const video = event.currentTarget
+    video.muted = false
+    video.volume = 1
+  }
   return (
     <section id="montazysta" className="scroll-mt-28 space-y-6 rounded-[2rem] border border-white/10 bg-[#111111]/95 p-6 shadow-panel sm:p-8">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
@@ -31,14 +37,18 @@ const VideoPortfolio = () => {
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         <article className="overflow-hidden rounded-[1.75rem] border border-white/10 bg-[#0a0a0a] transition duration-300 hover:-translate-y-1 hover:border-glow/30">
-          <div className="relative overflow-hidden bg-black" style={{ aspectRatio: '9 / 16' }}>
+            <div className="relative overflow-hidden bg-black" style={{ aspectRatio: '9 / 16' }}>
             <video
               className="h-full w-full object-cover"
               src={timelineVideo}
+              preload="metadata"
               controls
-              muted
+              volume={1}
+              muted={false}
               loop
               playsInline
+              onClick={enableSound}
+              onPlay={enableSound}
             />
           </div>
           <div className="p-5">
@@ -51,14 +61,18 @@ const VideoPortfolio = () => {
         </article>
 
         <article className="overflow-hidden rounded-[1.75rem] border border-white/10 bg-[#0a0a0a] transition duration-300 hover:-translate-y-1 hover:border-glow/30">
-          <div className="relative overflow-hidden bg-black" style={{ aspectRatio: '9 / 16' }}>
+            <div className="relative overflow-hidden bg-black" style={{ aspectRatio: '9 / 16' }}>
             <video
               className="h-full w-full object-cover"
               src={verticalVideo1}
+              preload="metadata"
               controls
-              muted
+              volume={1}
+              muted={false}
               loop
               playsInline
+              onClick={enableSound}
+              onPlay={enableSound}
             />
           </div>
           <div className="p-5">
@@ -71,14 +85,18 @@ const VideoPortfolio = () => {
         </article>
 
         <article className="overflow-hidden rounded-[1.75rem] border border-white/10 bg-[#0a0a0a] transition duration-300 hover:-translate-y-1 hover:border-glow/30">
-          <div className="relative overflow-hidden bg-black" style={{ aspectRatio: '9 / 16' }}>
+            <div className="relative overflow-hidden bg-black" style={{ aspectRatio: '9 / 16' }}>
             <video
               className="h-full w-full object-cover"
               src={verticalVideo2}
+              preload="metadata"
               controls
-              muted
+              volume={1}
+              muted={false}
               loop
               playsInline
+              onClick={enableSound}
+              onPlay={enableSound}
             />
           </div>
           <div className="p-5">
@@ -91,14 +109,18 @@ const VideoPortfolio = () => {
         </article>
 
         <article className="overflow-hidden rounded-[1.75rem] border border-white/10 bg-[#0a0a0a] transition duration-300 hover:-translate-y-1 hover:border-glow/30">
-          <div className="relative overflow-hidden bg-black" style={{ aspectRatio: '9 / 16' }}>
+            <div className="relative overflow-hidden bg-black" style={{ aspectRatio: '9 / 16' }}>
             <video
               className="h-full w-full object-cover"
               src={verticalVideo3}
+              preload="metadata"
               controls
-              muted
+              volume={1}
+              muted={false}
               loop
               playsInline
+              onClick={enableSound}
+              onPlay={enableSound}
             />
           </div>
           <div className="p-5">

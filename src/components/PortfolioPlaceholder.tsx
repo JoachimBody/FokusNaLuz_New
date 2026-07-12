@@ -74,6 +74,22 @@ const PortfolioPlaceholder = () => {
           </div>
         </button>
       </div>
+
+      <div className="mt-2 flex flex-wrap items-center justify-between gap-4 rounded-[1.75rem] border border-glow/20 bg-gradient-to-r from-[#161616] via-[#111111] to-[#0f172a] p-5 shadow-[0_0_0_1px_rgba(255,255,255,0.03),0_18px_45px_rgba(0,0,0,0.35)]">
+        <div className="max-w-2xl">
+          <p className="text-sm uppercase tracking-[0.28em] text-slate-400">Pełne portfolio</p>
+          <p className="mt-2 text-sm leading-6 text-slate-300">
+            Zobacz całość moich realizacji fotograficznych i wideo w jednej, uporządkowanej galerii.
+          </p>
+        </div>
+        <a
+          href="/portfolio.html"
+          className="inline-flex items-center justify-center rounded-full border border-glow/30 bg-gradient-to-r from-[#66ffea]/20 to-[#8b5cf6]/20 px-5 py-2.5 text-sm font-semibold text-white shadow-[0_0_30px_rgba(102,255,234,0.12)] transition duration-300 hover:-translate-y-0.5 hover:border-glow/50 hover:bg-gradient-to-r hover:from-[#66ffea]/30 hover:to-[#8b5cf6]/30"
+        >
+          Otwórz pełne portfolio
+        </a>
+      </div>
+
       {lightboxIndex !== null ? (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 px-4 py-6">
           <button

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Hero from './components/Hero'
 import PortfolioHighlight from './components/PortfolioHighlight'
 import PortfolioPlaceholder from './components/PortfolioPlaceholder'
@@ -7,15 +7,80 @@ import VideoPortfolio from './components/VideoPortfolio'
 import SkillsGrid from './components/SkillsGrid'
 import AboutSection from './components/AboutSection'
 import ContactSection from './components/ContactSection'
+import photo1 from './assets/DSC06950-3.jpg'
+import photo2 from './assets/DSC06992.jpg'
+import photo3 from './assets/DSC07259.jpg'
+import photo4 from './assets/DSC07350.jpg'
+import photo5 from './assets/DSC07353.jpg'
+
+const heroImages = [photo1, photo2, photo3, photo4, photo5]
 
 function App() {
   const [showPrivacy, setShowPrivacy] = useState(false)
+  const [showName, setShowName] = useState(false)
+
+  // Crossfade implementation using two image layers
+  const transitionDuration = 1000
+  const currentIndexRef = useRef(0)
+  const fadeTimeoutRef = useRef<number | null>(null)
+  const [showFront, setShowFront] = useState(true)
+  const showFrontRef = useRef(true)
+  const [frontSrc, setFrontSrc] = useState(heroImages[0])
+  const [backSrc, setBackSrc] = useState(heroImages.length > 1 ? heroImages[1] : heroImages[0])
+
+  useEffect(() => {
+    const imageInterval = window.setInterval(() => {
+      const nextIndex = (currentIndexRef.current + 1) % heroImages.length
+      // preload next image to avoid any render gap
+      const preImg = new Image()
+      preImg.src = heroImages[nextIndex]
+      const startFade = () => {
+        // update only the currently hidden layer's src, then toggle visibility
+        if (showFrontRef.current) {
+          setBackSrc(heroImages[nextIndex])
+        } else {
+          setFrontSrc(heroImages[nextIndex])
+        }
+
+        // toggle visible layer and keep ref in sync
+        setShowFront((prev) => {
+          const next = !prev
+          showFrontRef.current = next
+          return next
+        })
+
+        if (fadeTimeoutRef.current) window.clearTimeout(fadeTimeoutRef.current)
+        fadeTimeoutRef.current = window.setTimeout(() => {
+          // update current index after transition; do not overwrite the visible element's src
+          currentIndexRef.current = nextIndex
+        }, transitionDuration)
+      }
+
+      if (preImg.complete) {
+        startFade()
+      } else {
+        preImg.onload = startFade
+        preImg.onerror = () => {
+          // on error, still attempt the fade after a short delay
+          window.setTimeout(startFade, 200)
+        }
+      }
+    }, 6000)
+
+    const nameDelay = window.setTimeout(() => setShowName(true), 500)
+
+    return () => {
+      window.clearInterval(imageInterval)
+      window.clearTimeout(nameDelay)
+      if (fadeTimeoutRef.current) window.clearTimeout(fadeTimeoutRef.current)
+    }
+  }, [])
 
   return (
     <main className="min-h-screen bg-surface text-ink scroll-smooth">
-      <div className="mx-auto flex min-h-screen max-w-7xl flex-col gap-10 px-5 py-10 sm:px-6 lg:px-8">
-        <nav className="sticky top-0 z-40 border-b border-white/10 bg-surface/95 py-3 backdrop-blur-xl">
-          <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 text-sm text-slate-400 sm:px-6 lg:px-8">
+      <nav className="sticky top-0 z-40 site-topbar py-0">
+        <div className="wrapper">
+          <div className="site-menu">
             <span className="uppercase tracking-[0.28em] text-slate-500">Menu</span>
             <div className="flex flex-wrap items-center gap-4">
               <a href="#about" className="transition hover:text-glow">O mnie</a>
@@ -25,21 +90,39 @@ function App() {
               <a href="#contact" className="transition hover:text-glow">Kontakt</a>
             </div>
           </div>
-        </nav>
+        </div>
+      </nav>
 
-        <header className="space-y-6">
-          <div className="flex flex-col gap-4 border-b border-white/10 pb-6 sm:flex-row sm:items-end sm:justify-between">
-            <div>
-              <p className="text-xs uppercase tracking-[0.35em] text-slate/60">Portfolio zawodowe</p>
-              <h1 className="mt-4 text-5xl font-semibold leading-tight text-ink sm:text-6xl">
-                Nazywam się Mikołaj Zielonka
-              </h1>
-              <p className="mt-4 max-w-3xl text-xl leading-9 text-slate-300 sm:text-2xl">
-                Tworzę wysokokontrastowe sesje kobiece, koncertowe i eventowe ze szczególnym nastawieniem na kreatywne koncepcje.
-              </p>
+      <div className="mx-auto flex min-h-screen max-w-7xl flex-col gap-10 px-5 py-10 sm:px-6 lg:px-8">
+        <header className="space-y-6 -mt-10">
+          <div className="relative mx-auto w-full max-w-[95vw] overflow-hidden rounded-[2rem] border border-white/10 bg-[#090909] p-0">
+            <div className="absolute inset-0">
+              <img
+                src={frontSrc}
+                alt="Tło portfolio"
+                decoding="async"
+                style={{ willChange: 'opacity' }}
+                className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ${showFront ? 'opacity-100' : 'opacity-0'}`}
+              />
+              <img
+                src={backSrc}
+                alt="Tło portfolio"
+                decoding="async"
+                style={{ willChange: 'opacity' }}
+                className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ${showFront ? 'opacity-0' : 'opacity-100'}`}
+              />
+              <div className="absolute inset-0 bg-black/40" />
             </div>
-            <div className="space-y-2 text-sm text-slate/70">
-              <p>Boudoir · Portret kobiecy · Koncert · Event</p>
+            <div className="relative flex min-h-[90vh] items-center justify-center text-center p-6 sm:p-10">
+              <div className={`mx-auto w-[95%] max-w-7xl transition-all duration-1000 ease-out ${showName ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
+                <p className="text-xs uppercase tracking-[0.35em] text-slate-200">Portfolio zawodowe</p>
+                <h1 className="mt-4 whitespace-nowrap text-5xl font-semibold leading-tight text-white sm:text-6xl">
+                  Mikołaj Zielonka
+                </h1>
+                <p className="mt-4 text-sm uppercase tracking-[0.35em] text-slate-200">
+                  Boudoir · Cosplay · Portret kobiecy · Event
+                </p>
+              </div>
             </div>
           </div>
           <div id="about" className="scroll-mt-28">
