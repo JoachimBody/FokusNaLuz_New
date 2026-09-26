@@ -4,16 +4,16 @@ export default {
   theme: {
     extend: {
       colors: {
-        surface: '#070707',
-        base: '#111111',
-        ink: '#e9e9e9',
-        glow: '#66ffea',
-        ember: '#ff5f6d',
-        slate: '#7b8a99',
-        panel: '#171717',
+        surface: '#090a0b',
+        base: '#111113',
+        ink: '#f5f2f0',
+        glow: '#7ee7da',
+        ember: '#bde7e0',
+        slate: '#aaa2a0',
+        panel: '#171719',
       },
       boxShadow: {
-        glow: '0 0 60px rgba(102, 255, 234, 0.18)',
+        glow: '0 0 60px rgba(126, 231, 218, 0.16)',
         panel: '0 30px 80px rgba(0, 0, 0, 0.5)',
       },
       backgroundImage: {

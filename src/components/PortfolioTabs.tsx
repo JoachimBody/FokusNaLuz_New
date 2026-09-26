@@ -4,10 +4,9 @@ type PortfolioItem = {
   title: string
   subtitle: string
   detail: string
-  video?: string
 }
 
-const portfolio: Record<'photography' | 'video' | 'ai', PortfolioItem[]> = {
+const portfolio: Record<'photography' | 'ai', PortfolioItem[]> = {
   photography: [
     {
       title: 'Boudoir z mocnym charakterem',
@@ -23,24 +22,6 @@ const portfolio: Record<'photography' | 'video' | 'ai', PortfolioItem[]> = {
       title: 'Dokumentacja koncertowa',
       subtitle: 'Reportaż z wydarzeń muzycznych i sceny.',
       detail: 'Dynamiczne zdjęcia koncertowe pokazujące emocje, światło sceniczne i atmosferę występu.',
-    },
-  ],
-  video: [
-    {
-      title: 'Film z sesji boudoir',
-      subtitle: 'Ujęcia z sesji kobiecej do materiału promocyjnego.',
-      detail: 'Klip montowany tak, by podkreślić styl i atmosferę sesji fotograficznej.',
-      video: 'https://www.youtube.com/embed/ScMzIvxBSi4?modestbranding=1&rel=0',
-    },
-    {
-      title: 'Eventowe wideo',
-      subtitle: 'Klip z eventu i pracy z kołem AdVinci.',
-      detail: 'Krótkie materiały dokumentujące przestrzeń, energię i narrację eventu.',
-    },
-    {
-      title: 'Reel koncertowy',
-      subtitle: 'Montaż z sesji koncertowej i scenicznych ujęć.',
-      detail: 'Materiały gotowe do social i prezentacji dla agencji kreatywnych.',
     },
   ],
   ai: [
@@ -64,7 +45,6 @@ const portfolio: Record<'photography' | 'video' | 'ai', PortfolioItem[]> = {
 
 const tabs = [
   { key: 'photography', label: 'Fotografia' },
-  { key: 'video', label: 'Montaż wideo' },
   { key: 'ai', label: 'Treści i AI' },
 ] as const
 

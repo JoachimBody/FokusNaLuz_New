@@ -36,29 +36,29 @@ const toolGroups = [
 
 const SkillsGrid = () => {
   return (
-    <section className="space-y-8">
-      <div className="rounded-[2rem] border border-white/10 bg-[#0b0b0b]/95 p-6 shadow-panel sm:p-8">
+    <section className="skills-section space-y-8">
+      <div className="rounded-[2rem] border border-white/[0.12] bg-[#111113]/95 p-6 shadow-panel sm:p-8">
         <div className="mb-8 grid gap-4 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-end sm:justify-between">
           <div>
-            <p className="text-xs uppercase tracking-[0.35em] text-slate/60">Umiejętności i narzędzia</p>
+            <p className="text-sm uppercase tracking-[0.3em] text-[#aaa2a0]">Umiejętności i narzędzia</p>
             <h2 className="mt-3 text-3xl font-semibold leading-tight text-ink sm:text-4xl">
               Moje narzędzia i konkretne umiejętności w każdym z nich.
             </h2>
           </div>
-          <p className="max-w-xl text-sm leading-7 text-slate/70 sm:text-right">
+          <p className="max-w-xl text-sm leading-7 text-[#d0c9c5] sm:text-right">
             Pokazuję programy, z których korzystam na co dzień, oraz zakres pracy, który realizuję w każdym z nich.
           </p>
         </div>
 
         <div className="grid gap-4 grid-cols-1 md:grid-cols-3">
           {toolGroups.map((tool) => (
-            <div key={tool.title} className="rounded-[1.75rem] border border-white/10 bg-[#111111]/90 p-6">
+            <div key={tool.title} className="rounded-[1.75rem] border border-white/[0.12] bg-[#0d0e10] p-6">
               <h3 className="text-lg font-semibold text-ink">{tool.title}</h3>
-              <p className="mt-2 text-sm text-slate/400">{tool.description}</p>
-              <div className="mt-5 space-y-3 text-sm text-slate/70">
+              <p className="mt-2 text-sm text-[#aaa2a0]">{tool.description}</p>
+              <div className="mt-5 space-y-3 text-sm text-[#d0c9c5]">
                 {tool.skills.map((skill) => (
-                  <div key={skill} className="flex items-center gap-3 rounded-3xl border border-white/5 bg-white/3 px-4 py-3">
-                    <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-glow/10 text-[0.8rem] font-semibold text-glow">›</span>
+                  <div key={skill} className="flex items-center gap-3 rounded-3xl border border-white/[0.08] bg-white/[0.04] px-4 py-3">
+                    <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-[#7ee7da]/12 text-[0.8rem] font-semibold text-[#7ee7da]">›</span>
                     <span>{skill}</span>
                   </div>
                 ))}
