@@ -1,0 +1,27 @@
+# Portfolio Mateusza Rożynka
+
+> Osobista strona portfolio prezentująca doświadczenie i umiejętności w marketingu internetowym, realizowane projekty oraz dane kontaktowe. Plik jest przeznaczony dla narzędzi LLM i wyszukiwarek AI, aby szybko zrozumiały strukturę i najważniejsze zasoby witryny.
+
+Ta witryna jest zbudowana jako aplikacja React + Vite z sekcjami:
+
+- Hero i nagłówek prezentujący osobę
+- Sekcja „O mnie” z krótkim podsumowaniem kompetencji
+- Siatka umiejętności marketingowych i technologicznych
+- Prezentacja wybranych projektów portfolio
+- Wideo portfolio i dodatkowe przykłady prac
+- Dane kontaktowe pozwalające na nawiązanie współpracy
+
+## Strona
+
+- [Strona główna](./index.html): Główne wejście do portfolio z prezentacją oferty, umiejętności i projektów.
+- [Kontakt](./index.html#contact): Sekcja kontaktu z formularzem i danymi do komunikacji.
+
+## Zasoby
+
+- [README projektu](./README.md): Informacje o projekcie, użytych technologiach oraz instrukcje budowania i uruchamiania.
+- [package.json](./package.json): Lista zależności, skrypty deweloperskie i konfiguracja projektu.
+
+## Optional
+
+- [Sitemap](./sitemap.xml): Mapa strony z listą dostępnych adresów i zasobów.
+- [robots.txt](./robots.txt): Zasady indeksowania witryny przez automatyczne narzędzia.
