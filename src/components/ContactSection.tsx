@@ -1,4 +1,33 @@
+import { useState, type FormEvent } from 'react'
+
 const ContactSection = () => {
+  const [submissionStatus, setSubmissionStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle')
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+
+    const form = event.currentTarget
+    setSubmissionStatus('submitting')
+
+    try {
+      const response = await fetch('https://formspree.io/f/xrbnoezk', {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { Accept: 'application/json' },
+      })
+
+      if (!response.ok) {
+        setSubmissionStatus('error')
+        return
+      }
+
+      form.reset()
+      setSubmissionStatus('success')
+    } catch {
+      setSubmissionStatus('error')
+    }
+  }
+
   return (
     <section className="contact-section space-y-8 rounded-[2rem] border border-white/[0.12] bg-[#0d0e10]/95 p-6 shadow-panel sm:p-8">
       <div className="contact-layout grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-start">
@@ -54,13 +83,18 @@ const ContactSection = () => {
 
       <form
         className="contact-form grid gap-4 rounded-[1.75rem] border border-white/[0.12] bg-[#111113] p-6 shadow-panel"
-        onSubmit={(event) => event.preventDefault()}
+        action="https://formspree.io/f/xrbnoezk"
+        method="POST"
+        onSubmit={handleSubmit}
       >
         <div className="contact-form-grid grid gap-4 lg:grid-cols-2">
           <label className="space-y-2 text-sm text-[#d0c9c5]">
             <span>Imię i nazwisko</span>
             <input
               type="text"
+              name="name"
+              autoComplete="name"
+              required
               placeholder="Imię i nazwisko"
               className="w-full rounded-3xl border border-white/[0.14] bg-[#090a0b] px-4 py-3 text-sm text-[#f5f2f0] outline-none transition placeholder:text-[#aaa2a0] hover:border-white/25 focus:border-[#7ee7da]/[0.65] focus:ring-2 focus:ring-[#7ee7da]/20"
             />
@@ -69,6 +103,9 @@ const ContactSection = () => {
             <span>Email</span>
             <input
               type="email"
+              name="email"
+              autoComplete="email"
+              required
               placeholder="ty@example.com"
               className="w-full rounded-3xl border border-white/[0.14] bg-[#090a0b] px-4 py-3 text-sm text-[#f5f2f0] outline-none transition placeholder:text-[#aaa2a0] hover:border-white/25 focus:border-[#7ee7da]/[0.65] focus:ring-2 focus:ring-[#7ee7da]/20"
             />
@@ -79,6 +116,8 @@ const ContactSection = () => {
           <span>Opis projektu</span>
           <textarea
             rows={5}
+            name="message"
+            required
             placeholder="Krótki opis, format i termin"
             className="w-full rounded-[1.25rem] border border-white/[0.14] bg-[#090a0b] px-4 py-4 text-sm text-[#f5f2f0] outline-none transition placeholder:text-[#aaa2a0] hover:border-white/25 focus:border-[#7ee7da]/[0.65] focus:ring-2 focus:ring-[#7ee7da]/20"
           />
@@ -90,11 +129,16 @@ const ContactSection = () => {
           </p>
           <button
             type="submit"
-            className="contact-button inline-flex min-h-11 items-center justify-center rounded-full bg-[#7ee7da] px-6 py-3 text-sm font-semibold text-[#090a0b] shadow-[0_20px_60px_rgba(126,231,218,0.16)] transition hover:bg-[#bde7e0]"
+            disabled={submissionStatus === 'submitting'}
+            className="contact-button inline-flex min-h-11 items-center justify-center rounded-full bg-[#7ee7da] px-6 py-3 text-sm font-semibold text-[#090a0b] shadow-[0_20px_60px_rgba(126,231,218,0.16)] transition hover:bg-[#bde7e0] disabled:cursor-wait disabled:opacity-60"
           >
-            Wyślij wiadomość
+            {submissionStatus === 'submitting' ? 'Wysyłanie...' : 'Wyślij wiadomość'}
           </button>
         </div>
+        <p aria-live="polite" className="text-sm text-[#d0c9c5]">
+          {submissionStatus === 'success' ? 'Wiadomość została wysłana. Dziękuję za kontakt.' : null}
+          {submissionStatus === 'error' ? 'Nie udało się wysłać wiadomości. Spróbuj ponownie lub napisz bezpośrednio na email.' : null}
+        </p>
       </form>
     </section>
   )

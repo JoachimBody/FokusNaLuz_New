@@ -7,7 +7,7 @@ const AboutSection = () => {
         <div className="space-y-6">
           <p className="about-kicker text-sm uppercase tracking-[0.3em] text-[#aaa2a0]">O mnie</p>
           <h1 className="about-title text-4xl font-bold leading-tight text-white sm:text-5xl">
-            Fotograf portretowy, cosplayowy i artystycznych w Poznaniu
+            Fotograf portretowy, cosplayowy i artystyczny w Poznaniu
           </h1>
           <h2 className="about-subtitle mt-3 text-3xl font-semibold leading-tight text-white sm:text-4xl">
             Fotograf budujący opowieść o warsztacie i jakości - na luzie, jak ze znajomym.
@@ -16,7 +16,7 @@ const AboutSection = () => {
         <div className="about-grid grid gap-6 lg:grid-cols-[1.3fr_0.7fr] lg:items-start">
           <div className="about-copy space-y-4 text-sm leading-7 text-[#d0c9c5] sm:text-base">
             <p>
-              Jestem fotografem z Poznania i działam na terenie całej Wielkopolski (do innych miast w Polsce dojeżdzam
+              Jestem fotografem z Poznania i działam na terenie całej Wielkopolski (do innych miast w Polsce dojeżdżam
               za dodatkową opłatą). Specjalizuję się w sesjach portretowych, cosplayowych, boudoir oraz kreatywnych
               realizacjach z wyrazistym klimatem. Nie interesują mnie sztywne, pozowane ujęcia - stawiam na autentyczny
               klimat, dobry vibe i atmosferę, w której czujesz się swobodnie, a nie oceniana/y. Zero spiny, pełen profesjonalizm.

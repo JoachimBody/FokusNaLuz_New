@@ -116,6 +116,12 @@ button {
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
 }
 
+@media (max-width: 767px) {
+  .site-topbar-hidden {
+    transform: translateY(-100%);
+  }
+}
+
 /* Page wrapper matching public/portfolio.html */
 .wrapper {
   max-width: 1680px;

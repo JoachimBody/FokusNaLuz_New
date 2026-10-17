@@ -11,16 +11,16 @@ const Hero = () => {
             fotograf portretowy, cosplay i edytorial
           </p>
           <h1 className="hero-title max-w-3xl text-4xl font-semibold leading-tight text-ink sm:text-5xl lg:text-6xl">
-            Sesje kobiece, odważne koncepty i dokumentacja koncertowa.
+            Sesje kobiece, odważne koncepty i cosplay.
           </h1>
           <p className="hero-copy max-w-2xl text-sm leading-7 text-[#d0c9c5] sm:text-base">
-            Tworzę sesje boudoir, portrety i fotografie eventowe, które łączą estetykę z atmosferą oraz silnym
+            Tworzę sesje cosplay, portrety i fotografie eventowe, które łączą estetykę z atmosferą oraz silnym
             przekazem wizualnym. Przedstawiam praktykę, styl i gotowość do pracy na scenie.
           </p>
           <div className="hero-badges flex flex-wrap gap-3 text-xs uppercase tracking-[0.38em] text-[#d0c9c5]">
-            <span className="hero-badge rounded-full border border-white/[0.12] bg-white/[0.06] px-4 py-2">Boudoir</span>
+            <span className="hero-badge rounded-full border border-white/[0.12] bg-white/[0.06] px-4 py-2">Cosplay</span>
             <span className="hero-badge rounded-full border border-white/[0.12] bg-white/[0.06] px-4 py-2">Portret</span>
-            <span className="hero-badge rounded-full border border-white/[0.12] bg-white/[0.06] px-4 py-2">Koncert</span>
+            <span className="hero-badge rounded-full border border-white/[0.12] bg-white/[0.06] px-4 py-2">Event</span>
           </div>
         </div>
       </div>

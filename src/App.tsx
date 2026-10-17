@@ -4,7 +4,6 @@ import Hero from './components/Hero'
 import PortfolioHighlight from './components/PortfolioHighlight'
 import PortfolioPlaceholder from './components/PortfolioPlaceholder'
 import PortfolioTabs from './components/PortfolioTabs'
-import SkillsGrid from './components/SkillsGrid'
 import AboutSection from './components/AboutSection'
 import ContactSection from './components/ContactSection'
 import TestimonialsSection from './components/TestimonialsSection'
@@ -34,7 +33,6 @@ type HeroTile = {
 }
 
 const getRandomIndex = (length: number) => Math.floor(Math.random() * length)
-const getRandomImage = (images: string[]) => images[getRandomIndex(images.length)]
 
 // Losuje zdjęcie z puli, ale nigdy nie zwraca zdjęcia podanego w `exclude`
 // (dzięki temu każda zmiana jest realnie widoczna, a nie "cichym" powtórzeniem tego samego kadru)
@@ -61,8 +59,9 @@ const getTwoDistinctImages = (images: string[], excludeLeft?: string, excludeRig
 }
 
 const getInitialHeroTiles = (): HeroTile[] => {
-  const [leftSrc, rightSrc] = getTwoDistinctImages(sideImages)
-  const centerSrc = getRandomImage(middleImages)
+  const leftSrc = sideImages[0]
+  const rightSrc = sideImages[1]
+  const centerSrc = middleImages[0]
 
   return [
     {
@@ -85,6 +84,7 @@ function App() {
   const [showName, setShowName] = useState(false)
   const [heroTiles, setHeroTiles] = useState<HeroTile[]>(getInitialHeroTiles)
   const [scrolled, setScrolled] = useState(false)
+  const [mobileMenuHidden, setMobileMenuHidden] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   // Preloading wszystkich zdjęć w tle
@@ -96,17 +96,34 @@ function App() {
   }, [])
 
   useEffect(() => {
+    let previousScrollY = window.scrollY
+    let menuHidden = false
+
     const handleScroll = () => {
-      setScrolled(window.scrollY > 1)
+      const currentScrollY = window.scrollY
+      const scrollDelta = currentScrollY - previousScrollY
+      const isMobile = window.matchMedia('(max-width: 767px)').matches
+
+      if (!isMobile || currentScrollY <= 80) {
+        menuHidden = false
+      } else if (scrollDelta !== 0) {
+        menuHidden = scrollDelta > 0
+      }
+
+      previousScrollY = currentScrollY
+      setScrolled(currentScrollY > 1)
+      setMobileMenuHidden(menuHidden)
     }
 
     handleScroll()
     window.addEventListener('scroll', handleScroll, { passive: true })
+    window.addEventListener('resize', handleScroll)
 
     const nameDelay = window.setTimeout(() => setShowName(true), 500)
 
     return () => {
       window.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('resize', handleScroll)
       window.clearTimeout(nameDelay)
     }
   }, [])
@@ -144,8 +161,8 @@ function App() {
   }, [])
 
   return (
-    <main className="min-h-screen overflow-x-hidden bg-surface text-ink scroll-smooth">
-      <nav className={`sticky top-0 z-40 py-0 transition-all duration-300 ${scrolled ? 'site-topbar-scrolled' : 'site-topbar'}`}>
+    <main className="min-h-screen overflow-x-clip bg-surface text-ink scroll-smooth">
+      <nav className={`sticky top-0 z-40 py-0 transition-all duration-300 ${scrolled ? 'site-topbar-scrolled' : 'site-topbar'} ${mobileMenuHidden ? 'site-topbar-hidden' : ''}`}>
         <div className="wrapper">
           <div className="site-menu">
             <span className="hidden uppercase tracking-[0.28em] text-slate-500 md:inline">Menu</span>
@@ -155,16 +172,17 @@ function App() {
               onClick={() => setMobileMenuOpen((prev) => !prev)}
               aria-expanded={mobileMenuOpen}
               aria-controls="mobile-menu"
-              className="relative z-50 inline-flex min-h-11 items-center gap-2 rounded-full border border-white/[0.15] bg-[#111315]/90 px-4 py-2 text-[0.62rem] uppercase tracking-[0.24em] text-[#f5f2f0] shadow-[0_8px_24px_rgba(0,0,0,0.22)] backdrop-blur-md transition hover:border-[#7ee7da]/50 hover:bg-[#171a1b] md:hidden"
+              aria-label={mobileMenuOpen ? 'Zamknij menu' : 'Otwórz menu'}
+              className="relative z-50 ml-auto inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/[0.15] bg-[#111315]/90 p-0 text-[#f5f2f0] shadow-[0_8px_24px_rgba(0,0,0,0.22)] backdrop-blur-md transition hover:border-[#7ee7da]/50 hover:bg-[#171a1b] md:hidden"
             >
-              <span>Menu</span>
-              <span className={`transition-transform duration-200 ${mobileMenuOpen ? 'rotate-180' : ''}`}>▾</span>
+              <svg aria-hidden="true" className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
+                <path d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
             </button>
 
             <div className="hidden items-center gap-4 md:flex">
               <a href="#about" className="transition hover:text-glow">O mnie</a>
               <a href="/portfolio.html" className="transition hover:text-glow">Portfolio fotograficzne</a>
-              <a href="#skills" className="transition hover:text-glow">Umiejętności</a>
               <a href="#contact" className="transition hover:text-glow">Kontakt</a>
             </div>
           </div>
@@ -174,7 +192,6 @@ function App() {
               <div className="flex flex-col gap-2 text-sm text-slate-200">
                 <a href="#about" onClick={() => setMobileMenuOpen(false)} className="flex min-h-11 items-center rounded-lg px-3 py-2 transition hover:bg-white/[0.08] hover:text-[#7ee7da]">O mnie</a>
                 <a href="/portfolio.html" onClick={() => setMobileMenuOpen(false)} className="flex min-h-11 items-center rounded-lg px-3 py-2 transition hover:bg-white/[0.08] hover:text-[#7ee7da]">Portfolio fotograficzne</a>
-                <a href="#skills" onClick={() => setMobileMenuOpen(false)} className="flex min-h-11 items-center rounded-lg px-3 py-2 transition hover:bg-white/[0.08] hover:text-[#7ee7da]">Umiejętności</a>
                 <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="flex min-h-11 items-center rounded-lg px-3 py-2 transition hover:bg-white/[0.08] hover:text-[#7ee7da]">Kontakt</a>
               </div>
             </div>
@@ -271,9 +288,6 @@ function App() {
           <div className="grid gap-10">
             <div id="skills" className="scroll-mt-28">
               <PortfolioTabs />
-            </div>
-            <div className="scroll-mt-28">
-              <SkillsGrid />
             </div>
             <div id="contact" className="scroll-mt-28">
               <ContactSection />

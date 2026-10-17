@@ -216,7 +216,7 @@
   html,
   body,
   #root {
-    overflow-x: hidden;
+    overflow-x: clip;
     max-width: 100%;
   }
 
@@ -431,7 +431,11 @@
   }
 
   .site-menu button {
-    width: 100%;
+    width: 2.75rem;
+    min-width: 2.75rem;
+    height: 2.75rem;
+    margin-left: auto;
+    padding: 0;
     justify-content: center;
   }
 
