@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Portfolio | FokusNaLuz</title>
-    <meta name="description" content="Portfolio fotograficzne i montaż wideo FokusNaLuz. Zobacz sesje, realizacje i styl wizualny." />
+    <meta name="description" content="Portfolio fotograficzne FokusNaLuz. Zobacz sesje, realizacje i styl wizualny." />
     <link rel="canonical" href="https://fokusnaluz.com/portfolio.html" />
     <link rel="icon" type="image/png" href="/favicon-32x32.png" />
     <!-- Google tag (gtag.js) -->
@@ -75,10 +75,28 @@
       .card { min-height: 380px; border: 1px solid rgba(255,255,255,0.12); border-radius: 1.75rem; background: rgba(17,17,19,0.94); box-shadow: 0 24px 80px rgba(0,0,0,0.3); overflow: hidden; display: flex; flex-direction: column; }
       .card-visual { width: 100%; background: linear-gradient(180deg, rgba(255,127,179,0.16), rgba(7,7,7,0.9)); display: grid; place-items: center; color: rgba(249,250,251,0.8); font-weight:700; letter-spacing:0.08em; text-transform:uppercase; font-size:1.05rem; overflow:hidden; }
       .card-visual img { width:100%; height:auto; display:block; object-fit:cover; }
-      .card[data-category="video"] .card-visual { aspect-ratio: 9 / 16; }
+      .gallery-trigger { display:block; width:100%; padding:0; border:0; background:transparent; cursor:pointer; }
+      .gallery-trigger:focus-visible { outline:2px solid #7ee7da; outline-offset:-4px; }
+      .card-visual--portrait { aspect-ratio: 2 / 3; }
+      .card-visual--portrait .gallery-trigger, .card-visual--portrait img { width:100%; height:100%; object-fit:cover; }
       .card-body { padding: 1.4rem 1.5rem; }
       .card-body h3 { margin:0; font-size:1.15rem; }
       .card-body p { margin:0.9rem 0 0; color:#d0c9c5; line-height:1.75; font-size:0.96rem; }
+
+      .photo-gallery { display:none; flex-direction:column; width:98vw; height:96vh; max-width:1600px; max-height:none; overflow:hidden; padding:1.25rem; border:1px solid rgba(255,255,255,.16); border-radius:1.25rem; background:#090a0b; color:#f5f2f0; }
+      .photo-gallery[open] { display:flex; }
+      .photo-gallery::backdrop { background:rgba(0,0,0,.9); backdrop-filter:blur(5px); }
+      .photo-gallery__toolbar { display:flex; align-items:center; justify-content:space-between; gap:1rem; margin-bottom:1rem; }
+      .photo-gallery__title { margin:0; font-size:1rem; font-weight:600; }
+      .photo-gallery__close, .photo-gallery__nav { min-width:44px; min-height:44px; border:1px solid rgba(255,255,255,.2); border-radius:999px; background:#171a1b; color:inherit; cursor:pointer; }
+      .photo-gallery__content { display:flex; flex:1; min-height:0; align-items:center; justify-content:center; gap:1rem; touch-action:pan-y; }
+      .photo-gallery__image { display:block; width:auto; height:100%; min-width:0; max-width:calc(100% - 7rem); object-fit:contain; }
+      .photo-gallery__counter { margin:1rem 0 0; text-align:center; color:#aaa2a0; font-size:.875rem; }
+      @media (max-width:640px) {
+        .photo-gallery { width:100vw; height:100vh; height:100dvh; padding:.75rem; border-radius:0; }
+        .photo-gallery__content { gap:.35rem; }
+        .photo-gallery__image { max-width:calc(100% - 5rem); }
+      }
 
       .cta-box { margin-top:3rem; padding:2rem; border-radius:2rem; background: rgba(17,17,19,0.94); border:1px solid rgba(255,255,255,0.12); }
       .cta-inner { display:flex; flex-wrap:wrap; justify-content:space-between; gap:1rem; align-items:center; }
@@ -106,7 +124,7 @@
     <nav class="site-topbar">
       <div class="nav-wrapper">
         <div class="site-menu">
-          <span class="menu-label">Menu</span>
+          <a class="menu-label" href="/" aria-label="Wróć na górę strony głównej">Menu</a>
           <button class="menu-toggle" type="button" aria-label="Otwórz menu" aria-expanded="false" aria-controls="mobile-menu">
             <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
               <path d="M4 6h16M4 12h16M4 18h16" />
@@ -130,8 +148,8 @@
         <section class="hero">
           <div class="hero-content">
             <span class="eyebrow">Portfolio zawodowe</span>
-            <h1>Wybrane realizacje fotograficzne i montaż wideo.</h1>
-            <p class="subtext">Klimatyczne sesje, mocny storytelling i wypolerowany montaż. Przegląd moich ulubionych projektów, które budują spójny, wizualny styl FokusNaLuz.</p>
+            <h1>Wybrane realizacje fotograficzne.</h1>
+            <p class="subtext">Klimatyczne sesje i mocny storytelling. Przegląd moich ulubionych projektów, które budują spójny, wizualny styl FokusNaLuz.</p>
           </div>
         </section>
 
@@ -140,12 +158,13 @@
           <div class="filter-bar">
             <button class="filter-button active" data-filter="all">Wszystkie</button>
             <button class="filter-button" data-filter="photo">Sesje fotograficzne</button>
-            <button class="filter-button" data-filter="video">Montaż rolek wideo</button>
           </div>
           <div class="portfolio-grid">
             <article class="card" data-category="photo">
               <div class="card-visual">
-                <img src="/krwawa38.webp" alt="Sesje kobiece" />
+                <button class="gallery-trigger" type="button" data-gallery="basen" aria-label="Otwórz galerię: sesja w opuszczonym basenie">
+                  <img src="/krwawa38.webp" alt="Sesja w opuszczonym basenie" loading="lazy" decoding="async" />
+                </button>
               </div>
               <div class="card-body">
                 <h3>Sesje kobiece</h3>
@@ -155,7 +174,9 @@
 
             <article class="card" data-category="photo">
               <div class="card-visual">
-                <img src="/Frieren-11.webp" alt="Sesje cosplay" />
+                <button class="gallery-trigger" type="button" data-gallery="frieren" aria-label="Otwórz galerię: sesja inspirowana Frieren">
+                  <img src="/Frieren-11.webp" alt="Sesja inspirowana Frieren" loading="lazy" decoding="async" />
+                </button>
               </div>
               <div class="card-body">
                 <h3>Sesje cosplay</h3>
@@ -164,88 +185,224 @@
             </article>
 
             <article class="card" data-category="photo">
-              <div class="card-visual">Portret</div>
+              <div class="card-visual card-visual--portrait">
+                <button class="gallery-trigger" type="button" data-gallery="cosplay" aria-label="Otwórz galerię: sesja cosplay">
+                  <img src="/assets/DSC02615-2-yvGE_MHp.webp" alt="Sesja cosplay" loading="lazy" decoding="async" />
+                </button>
+              </div>
               <div class="card-body">
-                <h3>Portret kobiecy</h3>
-                <p>Spójna narracja i naturalna stylizacja pozwalają wydobyć charakter każdej modelki.</p>
+                <h3>Sesje cosplay</h3>
+                <p>Barwne, charakteryzowane realizacje, w których postać spotyka się z klimatycznym obrazem.</p>
               </div>
             </article>
 
             <article class="card" data-category="photo">
-              <div class="card-visual">Event</div>
+              <div class="card-visual">
+                <button class="gallery-trigger" type="button" data-gallery="sesja-1" aria-label="Otwórz galerię: nowa sesja 1">
+                  <img src="/gallery-placeholder.svg" alt="Nowa sesja 1 — galeria w przygotowaniu" loading="lazy" decoding="async" />
+                </button>
+              </div>
               <div class="card-body">
-                <h3>Relacje z wydarzeń</h3>
-                <p>Reportażowe kadry i storytelling w ruchu — od koncertów po imprezy artystyczne.</p>
+                <h3>Nowa sesja 1</h3>
+                <p>Galeria zdjęć w przygotowaniu.</p>
               </div>
             </article>
 
-            <article class="card" data-category="video">
+            <article class="card" data-category="photo">
               <div class="card-visual">
-                <video style="width:100%;height:100%;object-fit:cover;display:block;" src="/videos/reklama_pyrkon.mov" preload="metadata" controls volume="1" loop playsinline onclick="this.muted=false; this.volume=1;" onplay="this.muted=false; this.volume=1;"></video>
+                <button class="gallery-trigger" type="button" data-gallery="sesja-2" aria-label="Otwórz galerię: nowa sesja 2">
+                  <img src="/gallery-placeholder.svg" alt="Nowa sesja 2 — galeria w przygotowaniu" loading="lazy" decoding="async" />
+                </button>
               </div>
               <div class="card-body">
-                <h3>Montaż wideo — timeline</h3>
-                <p>Dynamiczne cięcia i eksperymentalne podejście do narracji wideo.</p>
+                <h3>Nowa sesja 2</h3>
+                <p>Galeria zdjęć w przygotowaniu.</p>
               </div>
             </article>
 
-            <article class="card" data-category="video">
+            <article class="card" data-category="photo">
               <div class="card-visual">
-                <video style="width:100%;height:100%;object-fit:cover;display:block;" src="/videos/Siedzenie.mp4" preload="metadata" controls volume="1" loop playsinline onclick="this.muted=false; this.volume=1;" onplay="this.muted=false; this.volume=1;"></video>
+                <button class="gallery-trigger" type="button" data-gallery="sesja-3" aria-label="Otwórz galerię: nowa sesja 3">
+                  <img src="/gallery-placeholder.svg" alt="Nowa sesja 3 — galeria w przygotowaniu" loading="lazy" decoding="async" />
+                </button>
               </div>
               <div class="card-body">
-                <h3>Wideo — Siedzenie</h3>
-                <p>Pionowy materiał przygotowany pod social media z mocnym rytmem montażu.</p>
+                <h3>Nowa sesja 3</h3>
+                <p>Galeria zdjęć w przygotowaniu.</p>
               </div>
             </article>
 
-            <article class="card" data-category="video">
+            <article class="card" data-category="photo">
               <div class="card-visual">
-                <video style="width:100%;height:100%;object-fit:cover;display:block;" src="/videos/sonda_fixed_sub.mp4" preload="metadata" controls volume="1" loop playsinline onclick="this.muted=false; this.volume=1;" onplay="this.muted=false; this.volume=1;"></video>
+                <button class="gallery-trigger" type="button" data-gallery="sesja-4" aria-label="Otwórz galerię: nowa sesja 4">
+                  <img src="/gallery-placeholder.svg" alt="Nowa sesja 4 — galeria w przygotowaniu" loading="lazy" decoding="async" />
+                </button>
               </div>
               <div class="card-body">
-                <h3>Wideo — Sonda</h3>
-                <p>Krótkie formy promocyjne o wyraźnym tempie i kolorze.</p>
+                <h3>Nowa sesja 4</h3>
+                <p>Galeria zdjęć w przygotowaniu.</p>
               </div>
             </article>
 
-            <article class="card" data-category="video">
+            <article class="card" data-category="photo">
               <div class="card-visual">
-                <video style="width:100%;height:100%;object-fit:cover;display:block;" src="/videos/wybory_wakacyjne.mov" preload="metadata" controls volume="1" loop playsinline onclick="this.muted=false; this.volume=1;" onplay="this.muted=false; this.volume=1;"></video>
+                <button class="gallery-trigger" type="button" data-gallery="sesja-5" aria-label="Otwórz galerię: nowa sesja 5">
+                  <img src="/gallery-placeholder.svg" alt="Nowa sesja 5 — galeria w przygotowaniu" loading="lazy" decoding="async" />
+                </button>
               </div>
               <div class="card-body">
-                <h3>Wideo — Wybory wakacyjne</h3>
-                <p>Projekt wideo o narracyjnym zarysie, przygotowany pod krótkie formy.</p>
+                <h3>Nowa sesja 5</h3>
+                <p>Galeria zdjęć w przygotowaniu.</p>
               </div>
             </article>
+
+            <article class="card" data-category="photo">
+              <div class="card-visual">
+                <button class="gallery-trigger" type="button" data-gallery="sesja-6" aria-label="Otwórz galerię: nowa sesja 6">
+                  <img src="/gallery-placeholder.svg" alt="Nowa sesja 6 — galeria w przygotowaniu" loading="lazy" decoding="async" />
+                </button>
+              </div>
+              <div class="card-body">
+                <h3>Nowa sesja 6</h3>
+                <p>Galeria zdjęć w przygotowaniu.</p>
+              </div>
+            </article>
+
           </div>
         </section>
 
-        </section>
+        <dialog class="photo-gallery" aria-label="Galeria zdjęć">
+          <div class="photo-gallery__toolbar">
+            <h2 class="photo-gallery__title"></h2>
+            <button class="photo-gallery__close" type="button" aria-label="Zamknij galerię">×</button>
+          </div>
+          <div class="photo-gallery__content">
+            <button class="photo-gallery__nav photo-gallery__prev" type="button" aria-label="Poprzednie zdjęcie">‹</button>
+            <img class="photo-gallery__image" alt="" />
+            <button class="photo-gallery__nav photo-gallery__next" type="button" aria-label="Następne zdjęcie">›</button>
+          </div>
+          <p class="photo-gallery__counter" aria-live="polite"></p>
+        </dialog>
 
         <footer>
-          <p>FokusNaLuz — fotografia artystyczna, portret i montaż wideo.</p>
+          <p>FokusNaLuz — fotografia artystyczna i portret.</p>
         </footer>
-    <script>
-      (function(){
-        document.querySelectorAll('video').forEach(function(v){
-          v.addEventListener('click', function(){
-            v.muted = false;
-            v.volume = 1;
-          });
-          v.addEventListener('play', function(){
-            v.muted = false;
-            v.volume = 1;
-          });
-        });
-      })();
-    </script>
       </div>
     </main>
 
     <script>
       const buttons = document.querySelectorAll('.filter-button')
       const cards = document.querySelectorAll('.portfolio-grid .card')
+      const galleries = {
+        basen: {
+          title: 'Sesja w opuszczonym basenie',
+          images: [
+            '/assets/DSC06950-3-Do69vnQU.webp',
+            '/assets/DSC06992-6H-tIjvm.webp',
+            '/assets/DSC07259-BuUL3Rep.webp',
+            '/assets/DSC07350-Dmxj_nd6.webp',
+            '/assets/DSC07353-Ckfm_yFQ.webp',
+          ],
+        },
+        frieren: {
+          title: 'Sesja inspirowana Frieren',
+          images: [
+            '/assets/DSC02888-DpNOFnJf.jpg',
+            '/assets/DSC02888-2-DgcBhWEx.jpg',
+            '/assets/DSC02893-DM4worZG.jpg',
+            '/assets/DSC02881-_GIgHWHP.jpg',
+            '/assets/DSC02820-DWlr3KVr.jpg',
+            '/assets/DSC02820-2-FOLVrcjZ.jpg',
+            '/assets/DSC02826-CzauKZgc.jpg',
+            '/assets/DSC02834-Dpm1pjJ3.jpg',
+            '/assets/DSC02736-29DN__1B.jpg',
+            '/assets/DSC02762-BKSQ1weV.jpg',
+            '/assets/DSC02767-h1fUoV6_.jpg',
+            '/assets/DSC02770-JVhsrUoA.jpg',
+            '/assets/DSC02791-BmjhubxW.jpg',
+          ],
+        },
+        cosplay: {
+          title: 'Sesja cosplay',
+          images: [
+            '/assets/DSC02615-2-yvGE_MHp.webp',
+            '/assets/DSC02615-CvL0YNAq.webp',
+          ],
+        },
+        'sesja-1': { title: 'Nowa sesja 1', images: ['/gallery-placeholder.svg'] },
+        'sesja-2': { title: 'Nowa sesja 2', images: ['/gallery-placeholder.svg'] },
+        'sesja-3': { title: 'Nowa sesja 3', images: ['/gallery-placeholder.svg'] },
+        'sesja-4': { title: 'Nowa sesja 4', images: ['/gallery-placeholder.svg'] },
+        'sesja-5': { title: 'Nowa sesja 5', images: ['/gallery-placeholder.svg'] },
+        'sesja-6': { title: 'Nowa sesja 6', images: ['/gallery-placeholder.svg'] },
+      }
+      const photoGallery = document.querySelector('.photo-gallery')
+      const galleryImage = photoGallery.querySelector('.photo-gallery__image')
+      const galleryTitle = photoGallery.querySelector('.photo-gallery__title')
+      const galleryCounter = photoGallery.querySelector('.photo-gallery__counter')
+      let activeGallery = null
+      let activeImageIndex = 0
+
+      const showGalleryImage = () => {
+        const imagePath = activeGallery.images[activeImageIndex]
+        galleryImage.src = imagePath
+        galleryImage.alt = `${activeGallery.title} — zdjęcie ${activeImageIndex + 1}`
+        galleryCounter.textContent = `${activeImageIndex + 1} / ${activeGallery.images.length}`
+      }
+
+      const updateGalleryNavigation = () => {
+        const showNavigation = activeGallery.images.length > 1
+        photoGallery.querySelector('.photo-gallery__prev').hidden = !showNavigation
+        photoGallery.querySelector('.photo-gallery__next').hidden = !showNavigation
+      }
+
+      document.querySelectorAll('.gallery-trigger').forEach((trigger) => {
+        trigger.addEventListener('click', () => {
+          activeGallery = galleries[trigger.dataset.gallery]
+          activeImageIndex = 0
+          galleryTitle.textContent = activeGallery.title
+          updateGalleryNavigation()
+          showGalleryImage()
+          photoGallery.showModal()
+        })
+      })
+
+      photoGallery.querySelector('.photo-gallery__close').addEventListener('click', () => photoGallery.close())
+      photoGallery.querySelector('.photo-gallery__prev').addEventListener('click', () => {
+        activeImageIndex = (activeImageIndex - 1 + activeGallery.images.length) % activeGallery.images.length
+        showGalleryImage()
+      })
+      photoGallery.querySelector('.photo-gallery__next').addEventListener('click', () => {
+        activeImageIndex = (activeImageIndex + 1) % activeGallery.images.length
+        showGalleryImage()
+      })
+      let touchStartX = 0
+      let touchStartY = 0
+      photoGallery.querySelector('.photo-gallery__content').addEventListener('touchstart', (event) => {
+        if (event.touches.length !== 1) return
+        touchStartX = event.touches[0].clientX
+        touchStartY = event.touches[0].clientY
+      }, { passive: true })
+      photoGallery.querySelector('.photo-gallery__content').addEventListener('touchend', (event) => {
+        if (event.changedTouches.length !== 1 || activeGallery.images.length < 2) return
+        const deltaX = event.changedTouches[0].clientX - touchStartX
+        const deltaY = event.changedTouches[0].clientY - touchStartY
+        if (Math.abs(deltaX) < 50 || Math.abs(deltaX) <= Math.abs(deltaY)) return
+        photoGallery.querySelector(deltaX < 0 ? '.photo-gallery__next' : '.photo-gallery__prev').click()
+      }, { passive: true })
+      photoGallery.addEventListener('click', (event) => {
+        if (event.target === photoGallery) photoGallery.close()
+      })
+      photoGallery.addEventListener('keydown', (event) => {
+        if (event.key === 'ArrowLeft') photoGallery.querySelector('.photo-gallery__prev').click()
+        if (event.key === 'ArrowRight') photoGallery.querySelector('.photo-gallery__next').click()
+      })
+      photoGallery.addEventListener('close', () => {
+        galleryImage.removeAttribute('src')
+        galleryImage.alt = ''
+        activeGallery = null
+      })
+
       const menuBar = document.querySelector('.site-topbar')
       const menuToggle = document.querySelector('.menu-toggle')
       const mobileMenu = document.querySelector('.mobile-menu')

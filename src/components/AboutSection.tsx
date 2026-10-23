@@ -10,28 +10,47 @@ const AboutSection = () => {
             Fotograf portretowy, cosplayowy i artystyczny w Poznaniu
           </h1>
           <h2 className="about-subtitle mt-3 text-3xl font-semibold leading-tight text-white sm:text-4xl">
-            Fotograf budujący opowieść o warsztacie i jakości - na luzie, jak ze znajomym.
+            Sesje, na których czujesz się swobodnie i pewnie.
           </h2>
         </div>
         <div className="about-grid grid gap-6 lg:grid-cols-[1.3fr_0.7fr] lg:items-start">
           <div className="about-copy space-y-4 text-sm leading-7 text-[#d0c9c5] sm:text-base">
             <p>
-              Jestem fotografem z Poznania i działam na terenie całej Wielkopolski (do innych miast w Polsce dojeżdżam
-              za dodatkową opłatą). Specjalizuję się w sesjach portretowych, cosplayowych, boudoir oraz kreatywnych
-              realizacjach z wyrazistym klimatem. Nie interesują mnie sztywne, pozowane ujęcia - stawiam na autentyczny
-              klimat, dobry vibe i atmosferę, w której czujesz się swobodnie, a nie oceniana/y. Zero spiny, pełen profesjonalizm.
+              Jestem Mikołaj, fotograf z Poznania. Tworzę sesje portretowe, boudoir, cosplayowe i kreatywne w Poznaniu
+              oraz całej Wielkopolsce. Nie musisz umieć pozować - pomogę Ci przejść przez sesję bez presji i sztywnego
+              pozowania.
             </p>
+            <ul className="space-y-3">
+              <li>
+                <strong className="text-white">Spokojna atmosfera.</strong> Przed sesją ustalamy koncept i Twoje granice,
+                a w trakcie prowadzę Cię krok po kroku.
+              </li>
+              <li>
+                <strong className="text-white">Jasny przebieg współpracy.</strong> Wiesz, jak przygotować się do sesji
+                i czego spodziewać się na każdym etapie.
+              </li>
+              <li>
+                <strong className="text-white">Zdjęcia dopasowane do Ciebie.</strong> Dbam o klimat i autorską obróbkę,
+                żeby efekt pasował do Twojego pomysłu.
+              </li>
+            </ul>
             <p>
-              Rozwijam się też w fotografii koncertowej i eventowej - dokumentuję energię sceny, grę świateł i emocje
-              publiczności. Współpracuję z artystami i organizatorami wydarzeń, którzy potrzebują profesjonalnej,
-              klimatycznej dokumentacji, a nie tylko standardowej fotorelacji.
+              Poza sesjami fotografuję też koncerty i wydarzenia, m.in. we współpracy z kołem naukowym AdVinci.
             </p>
-            <p>
-              Fotografuję eventy razem z kołem naukowym AdVinci, a jako wolontariusz dokumentowałem juwenalia. W pracy
-              liczy się dla mnie przejrzysty proces, terminowość i efekt, który realnie wzmacnia Twoją markę, social
-              media albo po prostu daje Ci zdjęcia, z których jesteś dumna/y. Masz odklejony pomysł na sesję? Napisz do
-              mnie - formularz kontaktowy znajdziesz na dole strony.
-            </p>
+            <div className="flex flex-wrap gap-3 pt-2">
+              <a
+                href="#contact"
+                className="inline-flex min-h-11 items-center justify-center rounded-full bg-[#7ee7da] px-6 py-3 text-sm font-semibold text-[#090a0b] transition hover:bg-[#bde7e0] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#7ee7da]"
+              >
+                Umów sesję
+              </a>
+              <a
+                href="/portfolio.html"
+                className="inline-flex min-h-11 items-center justify-center rounded-full border border-white/[0.2] px-6 py-3 text-sm font-semibold text-white transition hover:border-[#7ee7da]/[0.5] hover:text-[#7ee7da] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#7ee7da]"
+              >
+                Zobacz portfolio
+              </a>
+            </div>
           </div>
           <div className="about-media relative overflow-hidden rounded-[1.75rem] border border-white/[0.12] bg-[#171719] p-6">
             <img

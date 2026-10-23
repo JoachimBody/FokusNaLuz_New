@@ -5,6 +5,7 @@ import PortfolioHighlight from './components/PortfolioHighlight'
 import PortfolioPlaceholder from './components/PortfolioPlaceholder'
 import PortfolioTabs from './components/PortfolioTabs'
 import AboutSection from './components/AboutSection'
+import SessionProcessSection from './components/SessionProcessSection'
 import ContactSection from './components/ContactSection'
 import TestimonialsSection from './components/TestimonialsSection'
 import photo1 from './assets/DSC06950-3.webp'
@@ -165,7 +166,19 @@ function App() {
       <nav className={`sticky top-0 z-40 py-0 transition-all duration-300 ${scrolled ? 'site-topbar-scrolled' : 'site-topbar'} ${mobileMenuHidden ? 'site-topbar-hidden' : ''}`}>
         <div className="wrapper">
           <div className="site-menu">
-            <span className="hidden uppercase tracking-[0.28em] text-slate-500 md:inline">Menu</span>
+            <a
+              href="/"
+              aria-label="Wróć na górę strony głównej"
+              onClick={(event) => {
+                if (window.location.pathname === '/') {
+                  event.preventDefault()
+                  window.scrollTo({ top: 0, behavior: 'smooth' })
+                }
+              }}
+              className="hidden uppercase tracking-[0.28em] text-slate-500 transition hover:text-glow md:inline"
+            >
+              Menu
+            </a>
 
             <button
               type="button"
@@ -260,6 +273,9 @@ function App() {
             </div>
           </div>
           <div className="mx-auto w-full max-w-[72rem] px-5 sm:px-6 lg:px-8 2xl:max-w-[88rem]">
+            <SessionProcessSection />
+          </div>
+          <div className="mx-auto w-full max-w-[72rem] px-5 sm:px-6 lg:px-8 2xl:max-w-[88rem]">
             <div id="portfolio" className="scroll-mt-28">
               <Hero />
             </div>
@@ -321,7 +337,10 @@ function App() {
                 Formularz kontaktowy zbiera jedynie imię i nazwisko oraz adres email. Dane są używane wyłącznie w celu odpowiedzi na Twoje zapytanie i przygotowania oferty.
               </p>
               <p className="leading-7 text-slate-300">
-                Nie udostępniam przesłanych danych osobom trzecim ani nie wykorzystuję ich do innych celów marketingowych. Dane mogą być przechowywane tylko przez czas niezbędny do obsługi wiadomości.
+                Dane przesłane przez formularz nie są udostępniane osobom trzecim ani wykorzystywane do innych celów marketingowych. Mogą być przechowywane tylko przez czas niezbędny do obsługi wiadomości.
+              </p>
+              <p className="leading-7 text-slate-300">
+                Za Twoją zgodą na cookies marketingowe strona korzysta z Meta Pixel (Meta Platforms Ireland Limited), który mierzy wizyty i interakcje na stronie w celu analizy skuteczności reklam i tworzenia grup odbiorców. Możesz zmienić lub wycofać zgodę w ustawieniach cookies Cookiebot.
               </p>
               <p className="leading-7 text-slate-300">
                 Wysłanie wiadomości przez formularz oznacza zgodę na przetwarzanie tych danych w zakresie niezbędnym do odpowiedzi i realizacji kontaktu.
