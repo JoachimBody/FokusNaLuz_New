@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import './App.css'
 import Hero from './components/Hero'
 import PortfolioHighlight from './components/PortfolioHighlight'
@@ -10,14 +10,13 @@ import ContactSection from './components/ContactSection'
 import TestimonialsSection from './components/TestimonialsSection'
 import photo1 from './assets/DSC06950-3.webp'
 import photo2 from './assets/DSC06992.webp'
-import photo3 from './assets/DSC07259.webp'
-import photo4 from './assets/DSC07350.webp'
-import photo5 from './assets/DSC07353.webp'
-import photo6 from './assets/Frieren-11.webp'
-import photo7 from './assets/DSC02615-2.webp'
-import photo8 from './assets/DSC02615.webp'
-import photo9 from './assets/DSC02615.webp'
-import photo10 from './assets/DSC02615.webp'
+import photo3 from './assets/edytorial_sesja_basen_kreatywna_poznan_1.webp'
+import photo4 from './assets/edytorial_sesja_basen_kreatywna_poznan_2.webp'
+import photo5 from './assets/edytorial_sesja_basen_kreatywna_poznan_3.webp'
+import photo6 from './assets/sesja_cosplay_park_frieren_poznan_1.webp'
+import photo7 from './assets/sesja_portretowa_Halloween_Cosplay_upiorna_zakonnica_Poznan_2.webp'
+import photo9 from './assets/sesja_portretowa_Halloween_Cosplay_upiorna_zakonnica_Poznan_1.webp'
+import photo10 from './assets/sesja_portretowa_Halloween_Cosplay_upiorna_zakonnica_Poznan_1.webp'
 import photo11 from './assets/Ala_1.jpg'
 
 const middleImages = [photo2, photo4, photo6, photo9, photo10]
@@ -82,11 +81,18 @@ const getInitialHeroTiles = (): HeroTile[] => {
 
 function App() {
   const [showPrivacy, setShowPrivacy] = useState(false)
+  const privacySectionRef = useRef<HTMLElement>(null)
   const [showName, setShowName] = useState(false)
   const [heroTiles, setHeroTiles] = useState<HeroTile[]>(getInitialHeroTiles)
   const [scrolled, setScrolled] = useState(false)
   const [mobileMenuHidden, setMobileMenuHidden] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+
+  useEffect(() => {
+    if (showPrivacy) {
+      privacySectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+  }, [showPrivacy])
 
   // Preloading wszystkich zdjęć w tle
   useEffect(() => {
@@ -329,7 +335,10 @@ function App() {
         </footer>
 
         {showPrivacy ? (
-          <section className="rounded-[2rem] border border-white/10 bg-[#0d0d0d]/95 p-6 shadow-panel sm:p-8 text-sm text-slate-300">
+          <section
+            ref={privacySectionRef}
+            className="scroll-mt-28 rounded-[2rem] border border-white/10 bg-[#0d0d0d]/95 p-6 shadow-panel sm:p-8 text-sm text-slate-300"
+          >
             <div className="space-y-4">
               <p className="text-xs uppercase tracking-[0.35em] text-slate-500">Polityka prywatności</p>
               <h2 className="text-2xl font-semibold leading-tight text-white sm:text-3xl">Dane z formularza kontaktowego</h2>

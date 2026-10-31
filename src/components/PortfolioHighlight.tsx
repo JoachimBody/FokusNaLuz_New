@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import photo1 from '../assets/DSC06950-3.webp'
 import photo2 from '../assets/DSC06992.webp'
-import photo3 from '../assets/DSC07259.webp'
-import photo4 from '../assets/DSC07350.webp'
-import photo5 from '../assets/DSC07353.webp'
+import photo3 from '../assets/edytorial_sesja_basen_kreatywna_poznan_1.webp'
+import photo4 from '../assets/edytorial_sesja_basen_kreatywna_poznan_2.webp'
+import photo5 from '../assets/edytorial_sesja_basen_kreatywna_poznan_3.webp'
 
 const PortfolioHighlight = () => {
   const galleryImages = [photo1, photo2, photo3, photo4, photo5]
