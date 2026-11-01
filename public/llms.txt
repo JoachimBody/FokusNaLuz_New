@@ -15,7 +15,7 @@ Mikołaj działa w Poznaniu i na terenie Wielkopolski. Dojazd do innych miast w 
 ## Strony
 
 - [Strona główna](https://fokusnaluz.com/): informacje o Mikołaju, ofercie i wybranych pracach.
-- [Portfolio fotograficzne i wideo](https://fokusnaluz.com/portfolio.html): wybrane realizacje fotograficzne i materiały wideo.
+- [Portfolio fotograficzne i wideo](https://fokusnaluz.com/portfolio/): wybrane realizacje fotograficzne i materiały wideo.
 - [Kontakt](https://fokusnaluz.com/#contact): formularz, adres email i telefon.
 
 ## Kontakt

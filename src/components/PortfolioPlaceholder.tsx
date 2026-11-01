@@ -83,7 +83,7 @@ const PortfolioPlaceholder = () => {
           </p>
         </div>
         <a
-          href="/portfolio.html"
+          href="/portfolio/"
           className="inline-flex min-h-11 items-center justify-center rounded-full border border-[#7ee7da]/45 bg-[#7ee7da]/12 px-5 py-2.5 text-sm font-semibold text-[#f5f2f0] shadow-[0_0_30px_rgba(126,231,218,0.1)] transition duration-300 hover:-translate-y-0.5 hover:border-[#bde7e0]/70 hover:bg-[#7ee7da]/20"
         >
           Otwórz pełne portfolio

@@ -45,7 +45,7 @@ const AboutSection = () => {
                 Umów sesję
               </a>
               <a
-                href="/portfolio.html"
+                href="/portfolio/"
                 className="inline-flex min-h-11 items-center justify-center rounded-full border border-white/[0.2] px-6 py-3 text-sm font-semibold text-white transition hover:border-[#7ee7da]/[0.5] hover:text-[#7ee7da] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#7ee7da]"
               >
                 Zobacz portfolio

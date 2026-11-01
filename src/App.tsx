@@ -201,7 +201,7 @@ function App() {
 
             <div className="hidden items-center gap-4 md:flex">
               <a href="#about" className="transition hover:text-glow">O mnie</a>
-              <a href="/portfolio.html" className="transition hover:text-glow">Portfolio fotograficzne</a>
+              <a href="/portfolio/" className="transition hover:text-glow">Portfolio fotograficzne</a>
               <a href="#contact" className="transition hover:text-glow">Kontakt</a>
             </div>
           </div>
@@ -210,7 +210,7 @@ function App() {
             <div id="mobile-menu" className="absolute left-0 right-0 top-full z-50 border-y border-white/[0.12] bg-[#090a0b]/95 px-4 pb-4 pt-3 shadow-[0_18px_40px_rgba(0,0,0,0.42)] backdrop-blur-md md:hidden">
               <div className="flex flex-col gap-2 text-sm text-slate-200">
                 <a href="#about" onClick={() => setMobileMenuOpen(false)} className="flex min-h-11 items-center rounded-lg px-3 py-2 transition hover:bg-white/[0.08] hover:text-[#7ee7da]">O mnie</a>
-                <a href="/portfolio.html" onClick={() => setMobileMenuOpen(false)} className="flex min-h-11 items-center rounded-lg px-3 py-2 transition hover:bg-white/[0.08] hover:text-[#7ee7da]">Portfolio fotograficzne</a>
+                <a href="/portfolio/" onClick={() => setMobileMenuOpen(false)} className="flex min-h-11 items-center rounded-lg px-3 py-2 transition hover:bg-white/[0.08] hover:text-[#7ee7da]">Portfolio fotograficzne</a>
                 <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="flex min-h-11 items-center rounded-lg px-3 py-2 transition hover:bg-white/[0.08] hover:text-[#7ee7da]">Kontakt</a>
               </div>
             </div>

@@ -1,4 +1,4 @@
-import { readFile, writeFile } from 'node:fs/promises'
+import { copyFile, mkdir, readFile, writeFile } from 'node:fs/promises'
 import { basename, resolve } from 'node:path'
 import { createServer } from 'vite'
 
@@ -43,6 +43,13 @@ try {
   }
 
   await writeFile(htmlPath, html.replace(rootPlaceholder, `<div id="root">${renderedApp}</div>`))
+
+  const portfolioDirectory = resolve(outputDirectory, 'portfolio')
+  await mkdir(portfolioDirectory, { recursive: true })
+  await copyFile(
+    resolve(rootDirectory, 'public', 'portfolio.html'),
+    resolve(portfolioDirectory, 'index.html'),
+  )
 } finally {
   await vite.close()
 }
