@@ -252,6 +252,10 @@
     min-height: 62vh;
   }
 
+  .hero-mobile-layout .hero-overlay {
+    opacity: 1;
+  }
+
   .hero-mobile-layout .hero-tile:nth-child(2) .hero-overlay__panel {
     width: min(88vw, 28rem);
     max-width: 88vw;
